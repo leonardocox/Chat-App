@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon, PaperClipIcon } from "@heroicons/react/24/solid";
+import Dropzone from "react-dropzone";
 
 const StandardMessageForm = () => {
   const [message, setMessage] = useState("");
@@ -34,7 +35,29 @@ const StandardMessageForm = () => {
             type="text"
             value={message}
             onChange={handleChange}
+            placeholder="Send a message..."
           />
+        </div>
+        <div className="message-form-icons">
+          <Dropzone
+            acceptedFiles=".jpg,.jpeg,.png"
+            multiple={false}
+            noClick={true}
+            onDrop={(acceptedFiles) => {
+              setAttachment(acceptedFiles[0]);
+              setPreview(URL.createObjectURL(acceptedFiles[0]));
+            }}
+          >
+            {({ getRootProps, getInputProps, open }) => (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <PaperClipIcon
+                  className="message-form-icon-clip"
+                  onClick={open}
+                />
+              </div>
+            )}
+          </Dropzone>
         </div>
       </div>
     </div>
