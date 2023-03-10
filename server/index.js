@@ -21,7 +21,7 @@ app.use(cors());
 const configuration = new Configuration({
   apiKey: process.env.OPEN_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
+export const openai = new OpenAIApi(configuration);
 
 /* SERVER SETUP */
 const PORT = process.env.PORT || 9000;
