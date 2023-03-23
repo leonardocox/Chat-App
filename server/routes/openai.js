@@ -24,7 +24,7 @@ router.post("/text", async (req, res) => {
     console.log("response data", response.data);
 
     await axios.post(
-      `https://api.chatengine.io/chats${activeChatId}/messages/`,
+      `https://api.chatengine.io/chats/${activeChatId}/messages/`,
       { text: response.data.choices[0].text },
       {
         headers: {
